@@ -1,0 +1,11 @@
+{$APP_DOMAIN}
+
+handle /api {
+    reverse_proxy {$API_DOMAIN}
+}
+handle {
+    encode zstd gzip
+    file_server
+    root * /usr/share/caddy
+    try_files {path} /index.html
+}
